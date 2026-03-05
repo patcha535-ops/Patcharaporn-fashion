@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PATCARAPHORN</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        body {
+            background: #f2f2f2;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        
+        /* HERO */
+        .hero {
+            position: relative;
+            height: 70vh;
+            background: url("https://images.unsplash.com/photo-1520975922203-b1a7f8c1b0b1?q=80&w=1974") center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero h1 {
+            color: white;
+            font-size: 120px;
+            letter-spacing: 10px;
+        }
+        
+        /* SECTION */
+        .section {
+            width: 100%;
+        }
+        
+        .card {
+            position: relative;
+            width: 100%;
+        }
+        
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .card h2 {
+  color: white;
+  font-size: 60px;
+  letter-spacing: 5px;
+}
+
+/* ใช้ absolute เฉพาะ section รูปใหญ่ */
+.section .card {
+  position: relative;
+}
+
+.section .card h2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.bestseller-text {
+  text-align: center;
+  padding: 20px 10% 20px;
+  background-color: #f5f5f5;
+}
+
+.bestseller-text h4 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
+.bestseller-text p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.9;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+        img{
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    
+/* SECTION */
+.collection{
+  padding:20px 5%;
+}
+
+/* รูปใหญ่ด้านบน */
+.collection-large{
+  position:relative;
+  margin-bottom:40px;
+}
+
+.collection-large img{
+  width:100%;
+  height:500px;
+  object-fit:cover;
+  display:block;
+}
+
+.collection-large h3{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  font-size:36px;
+  letter-spacing:2px;
+}
+
+/* รูปสองช่องล่าง */
+.collection-grid{
+  display:flex;
+  gap:40px;
+}
+
+.collection-item{
+  position:relative;
+  flex:1;
+}
+
+.collection-item img{
+  width:100%;
+  height:400px;
+  object-fit:cover;
+  display:block;
+}
+
+.collection-item h3{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  color:#fff;
+  font-size:24px;
+  letter-spacing:2px;
+}
+
+/* hover effect */
+.collection-large img,
+.collection-item img{
+  transition:0.4s;
+}
+
+.collection-large:hover img,
+.collection-item:hover img{
+  transform:scale(1.05);
+  opacity:0.85;
+}
+
+/* BLACK STRIP */
+.black-strip {
+  background: black;
+  color: white;
+  overflow: hidden;
+  padding: 15px 0;
+}
+
+.ticker-track {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 15s linear infinite;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.ticker-track span {
+  margin-right: 40px;
+}
+
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* INFO SECTION */
+.info-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 8%;
+  background: #f5f5f5;
+}
+
+.info-box {
+  width: 30%;
+}
+
+.info-box h4 {
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.info-box p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+
+  .collection-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .collection-card {
+    width: 90%;
+  }
+
+  .info-section {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .info-box {
+    width: 100%;
+  }
+
+  .big-title {
+    font-size: 18vw;
+  }
+}
+
+/* FAQ */
+.faq-section { 
+    background: #000; 
+    color: #fff; 
+    padding: 100px 20px; 
+    text-align: center; 
+}
+.faq-container { 
+    max-width: 900px; 
+    margin: 0 auto; 
+}
+.faq-sub { 
+    color: #666; 
+    margin-bottom: 40px; 
+    font-size: 14px; 
+}
+.faq-categories button { 
+    background: transparent; 
+    border: 1px solid #333; 
+    color: #fff; 
+    padding: 8px 20px; 
+    margin: 5px; 
+    border-radius: 20px; 
+    cursor: pointer; 
+}
+.faq-categories button.active { 
+    background: #fff; 
+    color: #000; 
+}
+.faq-item { 
+    border-bottom: 1px solid #222; 
+    text-align: left; 
+}
+.faq-question { 
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    padding: 25px 0; 
+    cursor: pointer; 
+    font-size: 14px; 
+}
+.faq-answer { 
+    max-height: 0; 
+    overflow: hidden; 
+    transition: max-height 0.4s ease-out; 
+    color: #aaa; 
+}
+.faq-content { 
+    padding-bottom: 25px; 
+}
+
+/* FOOTER */
+.footer {
+    background: #000;
+    color: #fff;
+    padding: 60px 0;
+}
+
+.footer-container {
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 40px;
+}
+
+.footer h4 {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.footer input {
+    padding: 8px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.footer button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background: white;
+    border: none;
+    cursor: pointer;
+}
+.footer .subscribe {
+  width: 100%;
+  padding: 12px 0;
+  background: #dcdcdc; /* เทาอ่อน */
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #000;
+  border: none;
+}
+.homepage-bar {
+  padding: 20px 40px;
+}
+
+.homepage-bar a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 40px;
+  padding: 60px 40px;
+}
+
+.footer-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+/* CONTACT */
+.contact {
+  padding: 100px 0;
+  background: #fff;
+  color: #000;
+}
+
+.contact-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.contact-left {
+  flex: 1;
+}
+
+.contact-left h2 {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.contact-left p {
+  max-width: 350px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.contact-right {
+  flex: 1;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.form-row {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 30px;
+}
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px 0;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  border-bottom: 1px solid #000;
+}
+
+.checkbox-group {
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+
+button {
+  padding: 15px 50px;
+  background: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background: #333;
+}
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* สไตล์สำหรับ FAQ Accordion */
+    .faq-question {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        cursor: pointer;
+    }
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-in-out;
+        color: #ccc;
+        font-size: 14px;
+    }
+    
+    /* ปรับปรุง Footer ให้ Responsive */
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 30px;
+    }
+    .hero-slider {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* เต็มหน้าจอ */
+    background: #000;
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0; /* ซ่อนภาพเริ่มต้น */
+    transition: opacity 1.5s ease-in-out; /* ความเร็วในการจาง */
+}
+
+.slide.active {
+    opacity: 1; /* แสดงภาพที่มีคลาส active */
+}
+/* --- 1. สไตล์สำหรับรูปภาพแฟชั่น (Slideshow) --- */
+.slide-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: contain; /* เน้นเห็นครบทั้งตัว */
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+    z-index: 5;
+    background-color: #000;
+}
+
+.slide-item.active {
+    opacity: 1;
+}
+
+
+/* --- 2. คุมพื้นที่ทั้งหมดของ BEST SELLER --- */
+.bestseller-video-section {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    background: #000;
+    overflow: hidden;
+}
+
+.bestseller-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6);
+    z-index: 1;
+}
+
+/* --- 4. เลเยอร์ข้อความ (Overlay) --- */
+.video-overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.2);
+    transition: all 0.8s ease;
+}
+
+.video-overlay-content h2 {
+    font-size: clamp(40px, 8vw, 80px);
+    letter-spacing: 20px;
+    text-indent: 20px;
+    font-weight: 300;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.product-info h3 {
+    font-size: 24px;
+    letter-spacing: 5px;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    font-size: 14px;
+    margin-bottom: 30px;
+    opacity: 0.8;
+}
+
+/* --- 5. ปุ่มกด SHOP NOW --- */
+.shop-btn {
+    display: inline-block;
+    padding: 15px 45px;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+    font-size: 13px;
+    transition: 0.4s;
+    background: transparent;
+    cursor: pointer;
+}
+
+.shop-btn:hover { 
+    background: #fff; 
+    color: #000; 
+}
+
+ </style>
+</head>
+
+<body>
+
+    <!-- HERO -->
+   <section class="hero-slider">
+    <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1920');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1539109136881-3be0610cac48?q=80&w=1920');"></div>
+    <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1920');"></div>
+
+    <div class="hero-content">
+        <h1>PATCARAPHORN</h1>
+        <p>NEW COLLECTION 2026</p>
+    </div>
+</section>
+
+    <!-- BESTSELLER SECTION -->
+<section class="bestseller-video-section">
+    <video autoplay muted loop playsinline class="bestseller-video">
+        <source src="https://player.vimeo.com/external/494252666.sd.mp4?s=727af06e3001362e67c8df4f6f874c7e6c40689b&profile_id=164" type="video/mp4">
+    </video>
+
+    <div class="video-overlay-content" id="best-seller-content">
+        <div>
+            <h2 style="font-weight: 300; letter-spacing: 20px; text-transform: uppercase;">BEST SELLER</h2>
+            <div class="product-info">
+                <h3 style="letter-spacing: 5px;">ESSENTIAL COAT</h3>
+                <p style="opacity: 0.8;">Experience the luxury movement of PATCARAPHORN.</p>
+                <a href="javascript:void(0)" class="shop-btn" id="start-slideshow">SHOP NOW</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="fashion-slideshow" style="display: none; width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+        <div class="slide-item active" style="background-image: url('https://images.unsplash.com/photo-1539109136881-3be0610cac48?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1618244972963-dbee1a7edc95?q=80&w=1200');"></div> <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1550639525-c97d455acf70?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1537832816519-689ad163238b?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?q=80&w=1200');"></div>
+        <div class="slide-item" style="background-image: url('https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?q=80&w=1200');"></div>
+    </div>
+</section>
+
+   <section class="collection">
+
+  <div class="collection-large">
+    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1400" alt="">
+    <h3>COLLECTION 01</h3>
+  </div>
+
+  <div class="collection-grid">
+
+    <div class="collection-item">
+      <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?q=80&w=800" alt="">
+      <h3>COLLECTION 02</h3>
+    </div>
+
+    <div class="collection-item">
+      <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=800" alt="">
+      <h3>COLLECTION 03</h3>
+    </div>
+
+  </div>
+
+</section>
+  
+  <section class="black-strip">
+  <div class="ticker-track">
+    <span>BEST SELLING →</span>
+    <span>NEW ARRIVAL →</span>
+    <span>BEST SELLING →</span>
+    <span>NEW ARRIVAL →</span>
+    <span>BEST SELLING →</span>
+    <span>NEW ARRIVAL →</span>
+  </div>
+</section>
+
+<!-- INFO SECTION -->
+<section class="info-section">
+
+  <div class="info-box">
+    <h4>WORLDWIDE SHIPPING</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      Nam ornare, nisi non rhoncus commodo, turpis elit ultrices justo, 
+      vitae molestie quam justo ut lacus. Proin vitae.
+    </p>
+  </div>
+
+  <div class="info-box">
+    <h4>CUSTOMER SERVICE</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      Nam ornare, nisi non rhoncus commodo, turpis elit ultrices justo, 
+      vitae molestie quam justo ut lacus. Proin vitae.
+    </p>
+  </div>
+
+  <div class="info-box">
+    <h4>SECURE PAYMENT</h4>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+      Nam ornare, nisi non rhoncus commodo, turpis elit ultrices justo, 
+      vitae molestie quam justo ut lacus. Proin vitae.
+    </p>
+  </div>
+
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section">
+    <div class="faq-container">
+        <h2>FREQUENTLY ASKED QUESTIONS</h2>
+        <p class="faq-sub">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        
+        <div class="faq-categories">
+            <button class="filter-btn active" data-cat="orders">ORDERS</button>
+            <button class="filter-btn" data-cat="shipping">SHIPPING</button>
+            <button class="filter-btn" data-cat="returns">RETURNS & EXCHANGES</button>
+            <button class="filter-btn" data-cat="sizing">SIZING & PRODUCTS</button>
+        </div>
+
+        <div class="faq-list">
+            <div class="faq-item" data-category="orders">
+                <div class="faq-question">
+                    <span>HOW DO I TRACK MY RECENT ORDER?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">You can track your order status in your account dashboard or via the confirmation email sent to you.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="orders">
+                <div class="faq-question">
+                    <span>CAN I MODIFY MY ORDER AFTER PLACEMENT?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Order modifications are only possible within 1-2 hours after placement. Please contact support immediately.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="orders">
+                <div class="faq-question">
+                    <span>WHICH PAYMENT METHODS ARE AVAILABLE?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">We accept Visa, Mastercard, American Express, and PayPal for all domestic and international orders.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="shipping" style="display:none;">
+                <div class="faq-question">
+                    <span>HOW LONG IS THE STANDARD DELIVERY?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Domestic shipping usually takes 3-5 business days, while international shipping can take 7-14 days.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="shipping" style="display:none;">
+                <div class="faq-question">
+                    <span>DO YOU OFFER EXPRESS SHIPPING?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Yes, express shipping options are available at checkout for an additional fee depending on your location.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="shipping" style="display:none;">
+                <div class="faq-question">
+                    <span>WHAT HAPPENS IF MY PACKAGE IS LOST?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Please contact our support team within 7 days of the expected delivery date so we can initiate a claim.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="returns" style="display:none;">
+                <div class="faq-question">
+                    <span>WHAT IS YOUR RETURN POLICY?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Our return policy allows for returns within 30 days of purchase for unused items in original packaging.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="returns" style="display:none;">
+                <div class="faq-question">
+                    <span>CAN I EXCHANGE FOR A DIFFERENT SIZE?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Yes, exchanges are available as long as the item is in its original condition with all tags attached.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="returns" style="display:none;">
+                <div class="faq-question">
+                    <span>ARE SALE ITEMS REFUNDABLE?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Sale items are final sale and cannot be returned unless they arrive damaged or faulty.</div>
+                </div>
+            </div>
+
+            <div class="faq-item" data-category="sizing" style="display:none;">
+                <div class="faq-question">
+                    <span>WHERE IS THE SIZE GUIDE LOCATED?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">A detailed size guide is available on every product page to help you find the perfect fit.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="sizing" style="display:none;">
+                <div class="faq-question">
+                    <span>HOW SHOULD I CARE FOR MY PRODUCTS?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">We recommend following the care instructions on the internal garment label, typically a cold wash.</div>
+                </div>
+            </div>
+            <div class="faq-item" data-category="sizing" style="display:none;">
+                <div class="faq-question">
+                    <span>WHERE ARE YOUR PRODUCTS MANUFACTURED?</span>
+                    <span class="icon">▼</span>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-content">Our products are ethically manufactured in our partner facilities located in Thailand and Italy.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- CONTACT SECTION -->
+<section class="contact">
+  <div class="contact-container">
+
+    <div class="contact-left">
+      <h2>MAKE AN INQUIRY</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Nam ornare, nisi non rhoncus commodo.
+      </p>
+    </div>
+
+    <div class="contact-right">
+      <form>
+        <div class="radio-group">
+          <label><input type="radio" name="type" checked> Onsite</label>
+          <label><input type="radio" name="type"> Hybrid</label>
+        </div>
+
+        <div class="form-row">
+          <input type="text" placeholder="Full name*" required>
+          <input type="email" placeholder="Email*" required>
+        </div>
+
+        <div class="form-row">
+          <input type="text" placeholder="Phone Number*">
+          <select>
+            <option>Select Subject*</option>
+          </select>
+        </div>
+
+        <div class="checkbox-group">
+          <label>
+            <input type="checkbox">
+            I agree to all terms & conditions
+          </label>
+        </div>
+
+        <button type="submit">SEND</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOMEPAGE แยกออกมา -->
+<div class="homepage-bar">
+  <a href="#">HOMEPAGE</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-container">
+
+    <div>
+      <h4>ABOUT</h4>
+      <p>Women</p>
+      <p>Collections</p>
+      <p>Editorial</p>
+      <p>Stories</p>
+    </div>
+
+    <div>
+      <h4>HELP</h4>
+      <p>Payment Notification</p>
+      <p>Customer Service</p>
+      <p>FAQ</p>
+    </div>
+
+    <div>
+      <h4>SOCIAL</h4>
+      <p>Instagram</p>
+      <p>Facebook</p>
+    </div>
+
+    <div>
+      <h4>LEGAL</h4>
+      <p>Terms & Conditions</p>
+      <p>Privacy Policy</p>
+      <p>Cookies Policy</p>
+    </div>
+
+    <div>
+      <h4>NEWSLETTER</h4>
+      <input type="email" placeholder="Email">
+      <button class="subscribe">SUBSCRIBE</button>
+    </div>
+ <div class="footer-bottom">
+      <div class="copyright">©PATCARAPHORN</div>
+      <div class="webby">Web by i*</div>
+    </div>
+
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
