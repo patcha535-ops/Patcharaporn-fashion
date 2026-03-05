@@ -848,20 +848,20 @@ button:hover {
     </div>
 
     <div class="contact-right">
-      <form>
+      <form onsubmit="handleInquirySubmit(event)">
         <div class="radio-group">
           <label><input type="radio" name="type" checked> Onsite</label>
           <label><input type="radio" name="type"> Hybrid</label>
         </div>
 
         <div class="form-row">
-          <input type="text" placeholder="Full name*" required>
-          <input type="email" placeholder="Email*" required>
+          <input type="text" id="fullName" placeholder="Full name*" required>
+          <input type="email" id="email" placeholder="Email*" required>
         </div>
 
         <div class="form-row">
-          <input type="text" placeholder="Phone Number*">
-          <select>
+          <input type="text" id="phone" placeholder="Phone Number*">
+          <select id="subject">
             <option>Select Subject*</option>
           </select>
         </div>
@@ -923,11 +923,13 @@ button:hover {
       <button class="subscribe">SUBSCRIBE</button>
     </div>
  <div class="footer-bottom">
-      <div class="copyright">©PATCARAPHORN</div>
+      <div class="copyright">© All Rights Reserved by PATCARAPHORN 2026</div>
       <div class="webby">Web by i*</div>
     </div>
 
 </footer>
-<script src="script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="app.js"></script>
 </body>
 </html>
