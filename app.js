@@ -117,39 +117,94 @@ function backToBestSeller() {
         fashionSlides.forEach(s => s.classList.remove('active'));
     }, 100);
 }
-// --- ส่วนการเชื่อมต่อฐานข้อมูลของคุณ Jarvis ---
-// ใช้ Project ID: xuyjrpznobxbgjtggikk
-
-// --- ส่วนการเชื่อมต่อฐานข้อมูลของคุณ Jarvis ---
-// --- เริ่มวางทับตั้งแต่ตรงนี้เป็นต้นไปจนจบไฟล์ ---
-
-// 1. เชื่อมต่อ Supabase (ใช้ URL และ Key เดิมของคุณ Jarvis)
+// ==========================================
+// 1. ตั้งค่าการเชื่อมต่อ (วางต่อจากระบบ Slide)
+// ==========================================
 const SUPABASE_URL = 'https://xuyjrpznobxbgjtggikk.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_qrQafd9Gy1AYCigofj6bxg_SuQcssp6';
 const _supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-// 2. ฟังก์ชันส่งข้อมูล (ที่แก้ชื่อ Attribute ให้ตรงกับหัวตารางตัวใหญ่แล้ว)
+// ==========================================
+// 2. ฟังก์ชันส่งข้อมูลเข้าตาราง Inquiries
+// ==========================================
 async function handleInquirySubmit(event) {
-    event.preventDefault(); 
-    
+    event.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    const botTrap = document.getElementById('bot_trap').value;
+
+    // ระบบความปลอดภัย Honeypot
+    if (botTrap) return;
+
+    // ล็อกปุ่มป้องกันการกดซ้ำ
+    submitBtn.disabled = true;
+    submitBtn.innerText = "SENDING...";
+
+    // ดึงค่าจากฟอร์มมาใส่ตัวแปร ให้ชื่อตรงกับหัวตารางใน Supabase
     const formData = {
-        "Full_name": document.getElementById('fullName').value, // F ใหญ่
-        "E-mail": document.getElementById('email').value, // E ใหญ่ + ขีดกลาง
-        "Phone_number": document.getElementById('phone').value, // P ใหญ่
-        "Subject": document.getElementById('subject').value, // S ใหญ่
-        "Inquiry_type": document.getElementById('subject').value // ฝากค่าไว้ที่นี่ด้วย
+        "Full_name": document.getElementById('fullName').value.trim(),
+        "E-mail": document.getElementById('email').value.trim(),
+        "Phone_number": document.getElementById('phone').value.trim(),
+        "Subject": document.getElementById('subject').value,
+        "Inquiry_type": document.querySelector('input[name="type"]:checked').value,
+        "created_at": new Date().toISOString()
     };
 
-    const { data, error } = await _supabase
-        .from('Inquiries') 
-        .insert([formData]);
+    try {
+        // ส่งข้อมูลเข้าตาราง Inquiries
+        const { error } = await _supabase
+            .from('Inquiries') 
+            .insert([formData]);
 
-    if (error) {
-        // ถ้าขึ้น error "new row violates row-level security policy"
-        // ให้ไปกด "Add RLS policy" ในหน้า Supabase แล้วตั้งเป็น Enable Insert นะครับ
-        alert('เกิดข้อผิดพลาด: ' + error.message);
-    } else {
-        alert('ส่งข้อมูลถึงคุณ Patcharaporn เรียบร้อยแล้ว!');
-        event.target.reset(); 
+        if (error) throw error;
+
+        // ถ้าสำเร็จ
+        alert(`Thank you, ${formData.Full_name}! Your inquiry has been sent successfully.`);
+        document.getElementById('inquiryForm').reset();
+
+    } catch (error) {
+        console.error("Database Error:", error);
+        alert("เกิดข้อผิดพลาด: " + error.message);
+    } finally {
+        // คืนสถานะปุ่ม
+        submitBtn.disabled = false;
+        submitBtn.innerText = "SEND";
+    }
+}
+// --- ระบบสมัครรับข่าวสาร (NEWSLETTER) ---
+async function handleNewsletterSubmit(event) {
+    event.preventDefault();
+
+    const emailInput = document.getElementById('newsletterEmail');
+    const subscribeBtn = event.target.querySelector('button');
+    const email = emailInput.value.trim();
+
+    // UI Feedback: ล็อกปุ่มชั่วคราว
+    subscribeBtn.disabled = true;
+    subscribeBtn.innerText = "...";
+
+    try {
+        // ส่งอีเมลไปยังตาราง Newsletter_Subscribers
+        const { error } = await _supabase
+            .from('Newsletter_Subscribers')
+            .insert([{ "email": email }]);
+
+        if (error) {
+            if (error.code === '23505') { // กรณีอีเมลซ้ำ (ถ้าตั้ง Unique ไว้)
+                alert("This email is already subscribed!");
+            } else {
+                throw error;
+            }
+        } else {
+            alert("Thank you for subscribing to our newsletter!");
+            document.getElementById('newsletterForm').reset();
+        }
+
+    } catch (error) {
+        console.error("Newsletter Error:", error);
+        alert("Sorry, something went wrong.");
+    } finally {
+        subscribeBtn.disabled = false;
+        subscribeBtn.innerText = "SUBSCRIBE";
     }
 }

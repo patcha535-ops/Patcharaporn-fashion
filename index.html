@@ -590,6 +590,25 @@ button:hover {
     background: #fff; 
     color: #000; 
 }
+/* กำหนดหน้าตาปุ่ม Subscribe ให้เห็นชัดเจน */
+.newsletter-box .subscribe {
+    background-color: #e0e0e0; /* สีเทาอ่อนเพื่อให้ตัดกับพื้นหลังดำ */
+    color: #000; /* ตัวอักษรสีดำ */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    width: 100%; /* ให้ปุ่มกว้างเท่าช่องกรอก */
+    margin-top: 10px;
+}
+
+/* เมื่อเอาเมาส์ไปวาง ให้ปุ่มเปลี่ยนเป็นสีขาวสว่าง */
+.newsletter-box .subscribe:hover {
+    background-color: #ffffff;
+    color: #000;
+}
 
  </style>
 </head>
@@ -848,33 +867,41 @@ button:hover {
     </div>
 
     <div class="contact-right">
-      <form onsubmit="handleInquirySubmit(event)">
-        <div class="radio-group">
-          <label><input type="radio" name="type" checked> Onsite</label>
-          <label><input type="radio" name="type"> Hybrid</label>
-        </div>
+      <form onsubmit="handleInquirySubmit(event)" id="inquiryForm">
+    <div style="display:none;">
+        <input type="text" id="bot_trap" name="bot_trap">
+    </div>
 
-        <div class="form-row">
-          <input type="text" id="fullName" placeholder="Full name*" required>
-          <input type="email" id="email" placeholder="Email*" required>
-        </div>
+    <div class="radio-group">
+        <label><input type="radio" name="type" value="Onsite" checked> Onsite</label>
+        <label><input type="radio" name="type" value="Hybrid"> Hybrid</label>
+    </div>
 
-        <div class="form-row">
-          <input type="text" id="phone" placeholder="Phone Number*">
-          <select id="subject">
-            <option>Select Subject*</option>
-          </select>
-        </div>
+    <div class="form-row">
+        <input type="text" id="fullName" placeholder="Full name*" required minlength="3">
+        <input type="email" id="email" placeholder="Email*" required>
+    </div>
 
-        <div class="checkbox-group">
-          <label>
-            <input type="checkbox">
+    <div class="form-row">
+        <input type="text" id="phone" placeholder="Phone Number*" required pattern="[0-9]{9,10}">
+        <select id="subject" required>
+            <option value="">Select Subject*</option>
+            <option value="Custom Tailoring">Custom Tailoring</option>
+            <option value="Product Inquiry">Product Inquiry</option>
+            <option value="Appointment">Schedule an Appointment</option>
+        </select>
+    </div>
+
+    <div class="checkbox-group">
+        <label>
+            <input type="checkbox" id="terms" required>
             I agree to all terms & conditions
-          </label>
-        </div>
+        </label>
+    </div>
 
-        <button type="submit">SEND</button>
-      </form>
+    <button type="submit" id="submitBtn">SEND</button>
+</form>
+
     </div>
 
   </div>
@@ -917,11 +944,15 @@ button:hover {
       <p>Cookies Policy</p>
     </div>
 
-    <div>
-      <h4>NEWSLETTER</h4>
-      <input type="email" placeholder="Email">
-      <button class="subscribe">SUBSCRIBE</button>
+    <div class="footer-column">
+    <h3>NEWSLETTER</h3>
+    <div class="newsletter-box">
+        <form id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+            <input type="email" id="newsletterEmail" placeholder="Email" required>
+            <button type="submit" class="subscribe">SUBSCRIBE</button>
+        </form>
     </div>
+</div>
  <div class="footer-bottom">
       <div class="copyright">© All Rights Reserved by PATCARAPHORN 2026</div>
       <div class="webby">Web by i*</div>
